@@ -13,16 +13,15 @@ export class NegociacaoController {
     private mensagemView = new MensagemView('#mensagemView');
 
     constructor() {
-        this.inputData = document.querySelector('#data');
-        this.inputQuantidade = document.querySelector('#quantidade');
-        this.inputValor = document.querySelector('#valor');
-        this.negociacoesView.update(this.negociacoes);
+      // <HTMLInputElement> e 'as HTMLInputElement', trabalham da mesma forma em relação ao casting de tipo.
+      this.inputData = <HTMLInputElement>document.querySelector("#data");
+      this.inputQuantidade = document.querySelector("#quantidade") as HTMLInputElement;
+      this.inputValor = document.querySelector("#valor") as HTMLInputElement;
+      this.negociacoesView.update(this.negociacoes);
     }
 
     public adiciona(): void {
         const negociacao = Negociacao.criaDe(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
-
-        // const negociacao = this.criaNegociacao();
 
         if(!this.ehDiaUtil(negociacao.data)){
             this.mensagemView.update('Apenas negociações em dias úteis são aceitas.');
