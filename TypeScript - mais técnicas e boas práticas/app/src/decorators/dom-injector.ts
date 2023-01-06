@@ -18,6 +18,14 @@ export function domInjector(seletor: string) {
       return elemento;
     };
 
-    Object.defineProperty(target, propertyKey, { get: getter });
+    // Altero o prototype da classe, adicionando um atributo com o nome da propertyKey (nome do atributo) e gerando para ele um  método get.
+    // Esse get, por sua vez, recebe o valor do getter que criamos acima.
+    // O getter, busca um elemento no DOM.
+    Object.defineProperty(
+      target,
+      propertyKey,
+      { get: getter }
+    );
+    
   };
 }
